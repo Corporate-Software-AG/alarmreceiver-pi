@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Corporate-Software-AG/alarmreceiver-pi#readme",
   "dependencies": {
-    "azure-iot-device": "^1.18.0"
+    "azure-iot-device": "^1.18.0",
+    "azure-iot-device-amqp": "^1.14.0"
   }
 }
