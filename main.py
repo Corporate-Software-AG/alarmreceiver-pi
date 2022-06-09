@@ -40,8 +40,7 @@ async def main():
             payload = {"result": True}
             status = 200  # set return status code
             print("executed onAlarm")
-            GPIO.output(Relay_Ch1, GPIO.HIGH)
-            GPIO.output(Relay_Ch2, GPIO.LOW)
+            GPIO.output(Relay_Ch1, GPIO.LOW)
             print("Relais Action\n")
         else:
             # set response payload
