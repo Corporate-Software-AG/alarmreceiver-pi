@@ -41,8 +41,8 @@ async def main():
             status = 200  # set return status code
             print("executed onAlarm")
             GPIO.output(Relay_Ch1, GPIO.HIGH)
-            print(
-                "Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+            GPIO.output(Relay_Ch2, GPIO.LOW)
+            print("Relais Action\n")
         else:
             # set response payload
             payload = {"result": False, "data": "unknown method"}
