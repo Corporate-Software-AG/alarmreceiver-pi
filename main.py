@@ -8,6 +8,18 @@ import os
 import asyncio
 from azure.iot.device.aio import IoTHubDeviceClient
 from azure.iot.device import MethodResponse
+import RPi.GPIO as GPIO
+
+Relay_Ch1 = 26
+Relay_Ch2 = 20
+Relay_Ch3 = 21
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(Relay_Ch1, GPIO.OUT)
+GPIO.setup(Relay_Ch2, GPIO.OUT)
+GPIO.setup(Relay_Ch3, GPIO.OUT)
 
 
 async def main():
@@ -28,6 +40,9 @@ async def main():
             payload = {"result": True}
             status = 200  # set return status code
             print("executed onAlarm")
+            GPIO.output(Relay_Ch1, GPIO.HIGH)
+            print(
+                "Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
         else:
             # set response payload
             payload = {"result": False, "data": "unknown method"}
