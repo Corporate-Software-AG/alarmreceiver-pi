@@ -9,6 +9,7 @@ import asyncio
 from azure.iot.device.aio import IoTHubDeviceClient
 from azure.iot.device import MethodResponse
 import RPi.GPIO as GPIO
+import time
 
 Relay_Ch1 = 26
 Relay_Ch2 = 20
@@ -21,10 +22,12 @@ GPIO.setup(Relay_Ch1, GPIO.OUT)
 GPIO.setup(Relay_Ch2, GPIO.OUT)
 GPIO.setup(Relay_Ch3, GPIO.OUT)
 
-
 async def main():
     # The connection string for a device should never be stored in code. For the sake of simplicity we're using an environment variable here.
     conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
+
+    # Set default value for Relais 1
+    GPIO.output(Relay_Ch1, GPIO.HIGH)
 
     # The client object is used to interact with your Azure IoT hub.
     device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
@@ -39,9 +42,12 @@ async def main():
             # set response payload
             payload = {"result": True}
             status = 200  # set return status code
-            print("executed onAlarm")
+            print("Executed onAlarm")
             GPIO.output(Relay_Ch1, GPIO.LOW)
-            print("Relais Action\n")
+            print("Relais Action ON\n")
+            time.sleep(3)
+            GPIO.output(Relay_Ch1, GPIO.HIGH)
+            print("Relais Action OFF\n")
         else:
             # set response payload
             payload = {"result": False, "data": "unknown method"}
