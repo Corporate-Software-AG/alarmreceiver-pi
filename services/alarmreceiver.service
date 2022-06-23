@@ -1,0 +1,12 @@
+[Unit]
+Description=My Alarm Receiver Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /home/pi/alarmreceiver-pi/main.py
+StandardOutput=file:/home/pi/logs/alarmreceiver.log
+StandardError=file:/home/pi/logs/alarmreceivererror.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=My Cellular Setup Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /home/pi/python-pi-cellular-setup/setup.py
+StandardOutput=file:/home/pi/logs/cellularsetup.log
+StandardError=file:/home/pi/logs/cellularsetuperror.log
+
+[Install]
+WantedBy=multi-user.target
