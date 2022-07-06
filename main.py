@@ -29,6 +29,13 @@ async def main():
     conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
 
     print("Set Default Relais Setup...")
+    # blink on start.
+    GPIO.output(Relay_Ch1, GPIO.LOW)
+    time.sleep(0.5)
+    GPIO.output(Relay_Ch1, GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(Relay_Ch1, GPIO.LOW)
+    time.sleep(1)
     # Set default value for Relais 1
     GPIO.output(Relay_Ch1, GPIO.HIGH)
 
