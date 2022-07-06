@@ -26,8 +26,7 @@ GPIO.setup(Relay_Ch3, GPIO.OUT)
 async def main():
     print("Start...")
     # The connection string for a device should never be stored in code. For the sake of simplicity we're using an environment variable here.
-    #conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
-    conn_str = 'HostName=bkd-alarmbot-test.azure-devices.net;DeviceId=DemoPi;SharedAccessKey=iReCiNIg/Ud+uFo2frg90JrErMb2GrF422pnIFuQK3M='
+    conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
 
     print("Set Default Relais Setup...")
     # Set default value for Relais 1
@@ -61,6 +60,10 @@ async def main():
             time.sleep(3)
             GPIO.output(Relay_Ch1, GPIO.HIGH)
             print("Relais Action OFF\n")
+        elif method_request.name == "onHealthCheck":
+            # set response payload
+            payload = {"result": True}
+            status = 200  # set return status code
         else:
             # set response payload
             payload = {"result": False, "data": "unknown method"}
@@ -79,7 +82,7 @@ async def main():
     def stdin_listener():
         while True:
             print("Nothing Received\n")
-            time.sleep(5)
+            time.sleep(500)
 
     # Run the stdin listener in the event loop
     loop = asyncio.get_running_loop()
