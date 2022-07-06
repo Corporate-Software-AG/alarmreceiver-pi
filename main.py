@@ -33,11 +33,20 @@ async def main():
     # Set default value for Relais 1
     GPIO.output(Relay_Ch1, GPIO.HIGH)
 
-    print("Connect to IoT Hub...")
     # The client object is used to interact with your Azure IoT hub.
     device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
-    # connect the client.
-    await device_client.connect()
+
+    async def connect_iothub():
+        try:
+            # connect the client.
+            await device_client.connect()
+        except:
+            print("Connect to IoT Hub... Retry")
+            time.sleep(2)
+            connect_iothub()
+
+    print("Connect to IoT Hub...")
+    await connect_iothub()
 
     # Define behavior for handling methods
     async def method_request_handler(method_request):
