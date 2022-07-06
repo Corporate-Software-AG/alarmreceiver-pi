@@ -68,6 +68,7 @@ async def main():
             GPIO.output(Relay_Ch1, GPIO.HIGH)
             print("Relais Action OFF\n")
         elif method_request.name == "onHealthCheck":
+            print("Health Check Received")
             # set response payload
             payload = {"result": True}
             status = 200  # set return status code
