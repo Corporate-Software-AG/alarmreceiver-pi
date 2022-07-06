@@ -63,10 +63,10 @@ async def main():
             status = 200  # set return status code
             print("Executed onAlarm")
             GPIO.output(Relay_Ch1, GPIO.LOW)
-            print("Relais Action ON\n")
+            print("Relais Action ON")
             time.sleep(3)
             GPIO.output(Relay_Ch1, GPIO.HIGH)
-            print("Relais Action OFF\n")
+            print("Relais Action OFF")
         elif method_request.name == "onHealthCheck":
             print("Health Check Received")
             # set response payload
@@ -89,7 +89,7 @@ async def main():
     # Define behavior for halting the application
     def stdin_listener():
         while True:
-            print("Nothing Received\n")
+            print("Nothing Received")
             time.sleep(500)
 
     # Run the stdin listener in the event loop
