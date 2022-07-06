@@ -4,6 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=idle
+EnvironmentFile="/home/bkdalarm/alarmreceiver-pi/env.conf"
 ExecStart=/usr/bin/python /home/bkdalarm/alarmreceiver-pi/main.py
 StandardOutput=file:/home/bkdalarm/logs/alarmreceiver.log
 StandardError=file:/home/bkdalarm/logs/alarmreceivererror.log
