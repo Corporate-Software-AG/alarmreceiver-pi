@@ -28,9 +28,6 @@ async def main():
     # The connection string for a device should never be stored in code. For the sake of simplicity we're using an environment variable here.
     conn_str = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
 
-    # Set default value for Relais 1
-    GPIO.output(Relay_Ch1, GPIO.HIGH)
-
     # The client object is used to interact with your Azure IoT hub.
     device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
 
@@ -48,11 +45,11 @@ async def main():
 
     print("Set Default Relais Setup...")
     # blink on start.
-    GPIO.output(Relay_Ch1, GPIO.LOW)
+    GPIO.output(Relay_Ch2, GPIO.LOW)
     time.sleep(0.5)
-    GPIO.output(Relay_Ch1, GPIO.HIGH)
+    GPIO.output(Relay_Ch2, GPIO.HIGH)
     time.sleep(0.5)
-    GPIO.output(Relay_Ch1, GPIO.LOW)
+    GPIO.output(Relay_Ch2, GPIO.LOW)
     time.sleep(1)
     # Set default value for Relais 1
     GPIO.output(Relay_Ch1, GPIO.HIGH)
