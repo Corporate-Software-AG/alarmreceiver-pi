@@ -38,7 +38,7 @@ async def main():
         except:
             print("Connect to IoT Hub... Retry")
             time.sleep(2)
-            connect_iothub()
+            await connect_iothub()
 
     print("Connect to IoT Hub...")
     await connect_iothub()
